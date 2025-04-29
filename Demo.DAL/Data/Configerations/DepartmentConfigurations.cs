@@ -8,10 +8,13 @@ using System.Threading.Tasks;
 
 namespace Demo.DAL.Data.Configerations
 {
+    // This class is used to configure the Department entity in the database using Fluent API.
+    // why IEntityTypeConfiguration<Department> is used?
+    // It is an interface provided by Entity Framework Core that allows you to configure the properties of the Department entity.
+
     internal class DepartmentConfigurations : IEntityTypeConfiguration<Department>
     {
-
-
+        //implement interface method
         public void Configure(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder<Department> builder)
         {
             builder.Property(D => D.Id)
