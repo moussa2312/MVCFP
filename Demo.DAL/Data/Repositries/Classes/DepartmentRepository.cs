@@ -10,7 +10,9 @@ using System.Threading.Tasks;
 
 namespace Demo.DAL.Data.Repositries.Classes
 {
-    public class DepartmentRepository(AppDbContext dbContext) : IDepartmentRepositire
+    //CRUD operations
+    // ask clr for create obf from dbcontext
+    public class DepartmentRepository(AppDbContext dbContext) : IDepartmentRepositire //primary constrian
     {
         private readonly AppDbContext _dbcontext = dbContext; // Create an instance of the DbContext to connect to the database
 

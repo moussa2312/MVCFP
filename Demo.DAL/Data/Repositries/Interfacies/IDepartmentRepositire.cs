@@ -12,7 +12,11 @@ namespace Demo.DAL.Data.Repositries.Interfacies
         //signature of the methods
 
         //Get all departments
-        IEnumerable<Department> GetAllDepartments(bool withtracking);
+        // why IEnumerable<Department>?
+        // because it is a collection of Department objects
+        // why withtracking = false?
+        // because it is a default value for the parameter
+        IEnumerable<Department> GetAllDepartments(bool withtracking = false); // implemented against the interface not concrete class
         //Get by id
         Department GetDepartmentById(int id);
         //Add

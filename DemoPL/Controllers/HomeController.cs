@@ -1,6 +1,6 @@
-﻿using System.Diagnostics;
-using DemoPL.Models;
+﻿using DemoPL.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using System.Diagnostics;
 
 namespace DemoPL.Controllers
 {
@@ -24,7 +24,7 @@ namespace DemoPL.Controllers
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error() // This method is not used in the project 
+        public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }

@@ -16,18 +16,18 @@ namespace Demo.DAL.Data
 
         }
 
-
         //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         //{
-        //    optionsBuilder.UseSqlServer("Server=.;Database=MVCFP;Trusted_Connection=true;");
+        //    optionsBuilder.UseSqlServer("Server=.;Database=MVCFP;Trusted_Connection=true;"); //connection string
 
         //}
 
+        //any fluent API configuration run in this method (On ModelCreating)
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             //modelBuilder.ApplyConfiguration<Department>(new Configerations.DepartmentConfigurations());
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly()); // Apply all configurations in the assembly
         }
-        public DbSet<Department> Departments { get; set; } // Table name is Departments
+        public DbSet<Department> Departments { get; set; } // Table name is Departments in the database
     }
 }
