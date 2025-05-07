@@ -12,45 +12,8 @@ namespace Demo.DAL.Data.Repositries.Classes
 {
     //CRUD operations
     // ask clr for create obf from dbcontext
-    public class DepartmentRepository(AppDbContext dbContext) : IDepartmentRepositire //primary constrian
+    public class DepartmentRepository(AppDbContext dbContext ) : GenericRepositry<Department>(dbContext) , IDepartmentRepositire 
     {
-        private readonly AppDbContext _dbcontext = dbContext; // Create an instance of the DbContext to connect to the database
 
-        public int Add(Department Entity)
-        {
-            _dbcontext.Departments.Add(Entity); // Add the entity to the DbSet
-            return _dbcontext.SaveChanges(); // Save changes to the database (Update DB)
-        }
-
-        public int Delete(Department Entity)
-        {
-            _dbcontext.Departments.Remove(Entity); // Remove the entity from the DbSet
-            return _dbcontext.SaveChanges(); // Save changes to the database (Update DB)
-        }
-
-        public IEnumerable<Department> GetAllDepartments(bool withtracking = false)
-        {
-            if (withtracking)
-                return _dbcontext.Departments.ToList();
-            else 
-                return _dbcontext.Departments.AsNoTracking().ToList();
-        }
-
-        public Department GetDepartmentById(int id)
-        {
-            return _dbcontext.Departments.Find(id); // Find the department by ID
-           //find<Department>(id)
-        }
-
-        public int Update(Department Entity)
-        {
-            _dbcontext.Departments.Update(Entity); // Update the entity in the DbSet
-            return _dbcontext.SaveChanges(); // Save changes to the database (Update DB)
-        }
-
-        public void test()
-        {
-            GetAllDepartments();
-        }
     }
 }

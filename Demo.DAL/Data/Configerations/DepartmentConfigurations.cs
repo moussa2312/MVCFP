@@ -1,4 +1,5 @@
-﻿using Demo.DAL.Models;
+﻿using Demo.DAL.Data.Configerations.EmployeeConfigurations;
+using Demo.DAL.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -12,10 +13,10 @@ namespace Demo.DAL.Data.Configerations
     // why IEntityTypeConfiguration<Department> is used?
     // It is an interface provided by Entity Framework Core that allows you to configure the properties of the Department entity.
 
-    internal class DepartmentConfigurations : IEntityTypeConfiguration<Department>
+    public class DepartmentConfigurations : BassEntityConfigurations<Department> , IEntityTypeConfiguration<Department>
     {
         //implement interface method
-        public void Configure(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder<Department> builder)
+        public new void Configure(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder<Department> builder)
         {
             builder.Property(D => D.Id)
                 .UseIdentityColumn(10, 10);
@@ -32,7 +33,7 @@ namespace Demo.DAL.Data.Configerations
             builder.Property(D => D.LastModifiedOn)
                 .HasComputedColumnSql("getdate()"); // is change when inserted
 
-
+            base.Configure(builder); // Call the base class method to apply the default configurations
         }
     }
 

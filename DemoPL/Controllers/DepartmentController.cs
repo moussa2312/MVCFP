@@ -1,5 +1,5 @@
 ﻿using Demo.BLL.DTO;
-using Demo.BLL.Services;
+using Demo.BLL.Services.Interfaces;
 using DemoPL.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
@@ -146,6 +146,55 @@ namespace DemoPL.Controllers
 
         }
         #endregion
+
+        #region Delete Department
+
+        [HttpGet]
+        public IActionResult Delete(int? id)
+        {
+            if (!id.HasValue) return BadRequest();
+            var department = _departmentServices.GetDepartmentById(id.Value);
+            if (department is null) return NotFound(); //404
+            return View(department);
+        }
+
+
+        [HttpPost]
+
+        public IActionResult Delete(int id)
+        {
+            if (id <= 0) return BadRequest();
+            try
+            {
+                bool result = _departmentServices.DeleteDepartment(id);
+                if (result)
+                {
+                    return RedirectToAction(nameof(Index));
+                }
+                else
+                {
+                    ModelState.AddModelError(string.Empty, "Failed to delete department");
+                    return RedirectToAction(nameof(Delete), new {id} );
+                }
+            }
+            catch (Exception ex)
+            {
+                if (_environment.IsDevelopment())
+                {
+                    //_Logger.LogError(ex, "Error creating department");
+                    ModelState.AddModelError(string.Empty, ex.Message);
+                    return RedirectToAction(nameof(Delete), new { id });
+                }
+                else
+                {
+                    _Logger.LogError(ex, "Error creating department");
+                    return View("Error");
+                }
+            }
+
+        }
+        #endregion
+
 
     }
 }

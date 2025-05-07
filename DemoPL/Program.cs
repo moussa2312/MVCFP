@@ -1,4 +1,7 @@
-using Demo.BLL.Services;
+using Demo.BLL.DTO;
+using Demo.BLL.Profiles;
+using Demo.BLL.Services.Clases;
+using Demo.BLL.Services.Interfaces;
 using Demo.DAL.Data;
 using Demo.DAL.Data.Repositries.Classes;
 using Demo.DAL.Data.Repositries.Interfacies;
@@ -25,6 +28,14 @@ namespace DemoPL
             builder.Services.AddScoped<IDepartmentRepositire, DepartmentRepository>(); // Add the repository to the DI container
 
             builder.Services.AddScoped<IDepartmentServices, DepartmentServices>(); // Add the service to the DI container
+
+            builder.Services.AddScoped<IEmployeeRepositire, EmployeeRepository>(); // Add the repository to the DI container
+
+            // builder.Services.AddAutoMapper(typeof(MappingProfiles).Assembly); // Add AutoMapper to the DI container
+            builder.Services.AddAutoMapper(M => M.AddProfile(new MappingProfiles())); // Add the mapping profile to the DI container
+
+            builder.Services.AddScoped<IEmployeeServices , EmployeeService>();
+
             #endregion
             var app = builder.Build();
 
