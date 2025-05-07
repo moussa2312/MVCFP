@@ -45,7 +45,7 @@ namespace Demo.BLL.Factoris
                 Name = D.Name,
                 Code = D.Code,
                 Description = D.Description,
-                CreatedOn = D.DateOfCreation.ToDateTime(new TimeOnly(0 , 0)),
+                CreatedOn = D.DateOfCreation.ToDateTime(new TimeOnly(0, 0)),
 
             };
         }

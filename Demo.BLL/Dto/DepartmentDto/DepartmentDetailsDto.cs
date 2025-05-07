@@ -26,5 +26,6 @@ namespace Demo.BLL.DTO
         public DateOnly CreatedOn { get; set; } // Time of create 
         public int LastModifiedBy { get; set; } // User ID of the modifier
         public bool IsDeleted { get; set; } // Soft delete flag
+
     }
 }

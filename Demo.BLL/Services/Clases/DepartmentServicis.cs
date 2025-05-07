@@ -1,5 +1,6 @@
 ﻿using Demo.BLL.DTO;
 using Demo.BLL.Factoris;
+using Demo.BLL.Services.Interfaces;
 using Demo.DAL.Data.Repositries.Classes;
 using Demo.DAL.Data.Repositries.Interfacies;
 using Demo.DAL.Models;
@@ -10,7 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Demo.BLL.Services
+namespace Demo.BLL.Services.Clases
 {
     public class DepartmentServices(IDepartmentRepositire _departmentRepository) : IDepartmentServices
     {
@@ -19,7 +20,7 @@ namespace Demo.BLL.Services
 
         public IEnumerable<DepartmentDTO> GetAllDepartment()
         {
-            var departments = _departmentRepository.GetAllDepartments();
+            var departments = _departmentRepository.GetAll();
 
             //Manual mapping
             //var departmentsToReturn = departments.Select(D => new DepartmentDTO
@@ -40,7 +41,7 @@ namespace Demo.BLL.Services
 
         public DepartmentsDetailsDTO GetDepartmentById(int id)
         {
-            var department = _departmentRepository.GetDepartmentById(id);
+            var department = _departmentRepository.GetById(id);
 
             //Manual mapping
             //return department is null ? null : new DepartmentsDetailsDTO(department)
@@ -61,7 +62,7 @@ namespace Demo.BLL.Services
 
             //Extension method mapping
 
-            return DepartmentFactories.ToDeptDetailsDto(department);
+            return department.ToDeptDetailsDto();
 
         }
 
@@ -85,7 +86,7 @@ namespace Demo.BLL.Services
 
         public bool DeleteDepartment(int id)
         {
-            var department = _departmentRepository.GetDepartmentById(id);
+            var department = _departmentRepository.GetById(id);
             if (department == null)
             {
                 return false;
@@ -99,4 +100,3 @@ namespace Demo.BLL.Services
         }
     }
 }
-  
