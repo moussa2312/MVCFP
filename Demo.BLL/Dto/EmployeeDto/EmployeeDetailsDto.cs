@@ -32,7 +32,7 @@ namespace Demo.BLL.Dto.EmployeeDto
         public int CreatedBy { get; set; }
         public DateTime CreatedOn { get; set; }
         public int LastModifiedBy { get; set; }
-        public Gender Gender { get; set; }
+        public string Gender { get; set; }
         [Display(Name = "Employee Type")]
         public string EmployeeType { get; set; }
     }

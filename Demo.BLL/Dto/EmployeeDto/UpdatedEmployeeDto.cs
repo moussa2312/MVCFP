@@ -43,6 +43,6 @@ namespace Demo.BLL.Dto.EmployeeDto
         public int LastModifiedBy { get; set; }
         public Gender Gender { get; set; }
         [Display(Name = "Employee Type")]
-        public string EmployeeType { get; set; }
+        public EmployeeType EmployeeType { get; set; }
     }
 }

@@ -26,9 +26,9 @@ namespace Demo.DAL.Data.Repositries.Classes
         public IEnumerable<TEntity> GetAll(bool withtracking = false)
         {
             if (withtracking)
-                return _dbcontext.Set<TEntity>().ToList();
+                return _dbcontext.Set<TEntity>().Where(E => E.IsDeleted != true).ToList();
             else
-                return _dbcontext.Set<TEntity>().AsNoTracking().ToList();
+                return _dbcontext.Set<TEntity>().Where(E => E.IsDeleted != true).AsNoTracking().ToList();
         }
 
         public TEntity GetById(int id)
